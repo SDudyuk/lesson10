@@ -42,3 +42,22 @@ const notifications = {
 for (const notification of notifications) {
   console.log(notification);
 };
+
+/*task 2*/
+function memoize(fn) {
+  const cashe = new Map();
+
+  return function(...args) {
+    const key = args.map(arg => `${arg}_${typeof arg}`).join('-');
+    //console.log(key);
+    if (cashe.has(key)) {
+      console.log('Map has');
+      return cashe.get(key);
+    }
+
+    const result = fn(...args);
+    console.log('res');
+    cashe.set(key, result);
+    return result;
+  }
+}
